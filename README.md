@@ -2,20 +2,7 @@
 
 Esempio di disaccoppiamento di servizi usando web service.
 
-**Programma (o web service) chiamante**
-```mermaid
-graph TD;
-
-  Console_Program-->Proxy;
-```
-**Web service**
-```mermaid
-graph TD;
-
-  Tornado-->Persistence;
-  Persistence-->MySQL;
-  Persistence-->Postgres;
-```
+![Schema concettuale](img/conceptual_schema.png)*Schema concettuale*
 
 ## banca_dati
 
@@ -40,4 +27,16 @@ In questo caso il proxy fa delle request REST ad un tornado che fa parte, logica
 Questo componente può essere lanciato con
 ```shell 
 python main.py
+```
+
+## Per attivare il virtual environment
+
+```shell
+source bin/activate
+```
+
+## Per installare le dependency
+
+```shell
+pip install -r requirements.txt
 ```
