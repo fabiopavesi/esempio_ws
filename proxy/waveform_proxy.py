@@ -9,6 +9,6 @@ class Waveform:
         pass
 
     def save(self):
-        results = requests.post(self.url)
+        results = requests.post(self.url + '/itaca')
         ret_val = json.loads(results.text)
         return ret_val

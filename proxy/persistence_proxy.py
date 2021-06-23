@@ -9,6 +9,6 @@ class Persistence:
         pass
 
     def getASDF(self, seed_id):
-        results = requests.get(self.url + '/asdf')
+        results = requests.get(self.url + '/asdf/itaca')
         ret_val = json.loads(results.text)
         return ret_val

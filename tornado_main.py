@@ -7,7 +7,15 @@ from banca_dati.waveform import Waveform
 
 
 class SaveHandler(tornado.web.RequestHandler):
-    def post(self):
+    def post(self, banca_dati):
+        persistence = None
+
+        print('banca_dati', banca_dati)
+        if banca_dati == 'itaca':
+            persistence = MysqlPersistence()
+        elif banca_dati == 'esm':
+            persistence = PgPersistence()
+
         waveform = Waveform(persistence)
         result = waveform.save()
         self.write({
@@ -15,7 +23,14 @@ class SaveHandler(tornado.web.RequestHandler):
         })
 
 class RetrieveHandler(tornado.web.RequestHandler):
-    def get(self):
+    def get(self, banca_dati):
+        persistence = None
+        print('banca_dati', banca_dati)
+        if banca_dati == 'itaca':
+            persistence = MysqlPersistence()
+        elif banca_dati == 'esm':
+            persistence = PgPersistence()
+
         result = persistence.getHDF5()
         self.write({
             "result": result
@@ -23,15 +38,15 @@ class RetrieveHandler(tornado.web.RequestHandler):
 
 def make_app():
     return tornado.web.Application([
-        (r"/", SaveHandler),
-        (r"/asdf", RetrieveHandler),
+        # (r"/(.*)", SaveHandler),
+        (r"/(.*)/asdf", RetrieveHandler),
     ])
 
 if __name__ == "__main__":
 
     # Cambiando solo questa assegnazione si punta ad una o all'altra implementazione della banca dati
     # persistence = PgPersistence()
-    persistence = MysqlPersistence()
+    # persistence = MysqlPersistence()
 
     app = make_app()
     app.listen(8888)
