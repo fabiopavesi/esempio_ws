@@ -1,4 +1,4 @@
-#!/home/fabio/progetti/Prove/ws-example/bin/python
+#!/home/fabio/progetti/INGV/esempio_ws/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

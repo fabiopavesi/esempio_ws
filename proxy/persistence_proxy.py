@@ -1,5 +1,5 @@
 import json
-
+import time
 import requests
 
 
@@ -9,6 +9,9 @@ class Persistence:
         pass
 
     def getASDF(self, seed_id):
-        results = requests.get(self.url + '/asdf/itaca')
+        start = time.perf_counter()
+        results = requests.get(self.url + '/itaca/asdf')
         ret_val = json.loads(results.text)
+        end = time.perf_counter()
+        print('time elapsed', f'{end - start:0.4f} s')
         return ret_val

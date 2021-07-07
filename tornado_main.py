@@ -5,6 +5,7 @@ from banca_dati.mysql_persistence import MysqlPersistence
 from banca_dati.pg_persistence import PgPersistence
 from banca_dati.waveform import Waveform
 
+PORT=8888
 
 class SaveHandler(tornado.web.RequestHandler):
     def post(self, banca_dati):
@@ -49,5 +50,6 @@ if __name__ == "__main__":
     # persistence = MysqlPersistence()
 
     app = make_app()
-    app.listen(8888)
+    app.listen(PORT)
+    print('Listening on port', PORT)
     tornado.ioloop.IOLoop.current().start()
